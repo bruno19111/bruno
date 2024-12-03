@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6e6;
+            margin: 0;
+            padding: 20px;
+        }
+        img {
+            margin-top: 20px;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Escaneie o QR Code</h1>
+    <p>Clique ou escaneie para acessar o conteúdo!</p>
+    <!-- QR Code com o link correto -->
+    <a href="http://127.0.0.1:26969/main/0/storage/emulated/0/Natal/index.html">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=http://127.0.0.1:26969/main/0/storage/emulated/0/Natal/index.html" alt="QR Code">
+    </a>
+</body>
+</html>

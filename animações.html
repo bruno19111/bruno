@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celebrando o Amor</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #ffafbd, #ffc3a0);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        .photo-container {
+            width: 90%;
+            height: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .photo-container img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 10px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            animation: fadeIn 2s ease-in-out 1s;
+        }
+
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            animation: floatUp 10s infinite linear;
+            opacity: 0.8;
+            cursor: pointer;
+            color: #ff0000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            left: 50%; /* Centraliza horizontalmente */
+            transform: translateX(-50%); /* Ajusta o coração para o centro exato */
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) translateX(-50%) scale(0.5);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(-50%) scale(1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="photo-container">
+        <img id="photo" src="https://via.placeholder.com/600x400" alt="Foto do amor">
+    </div>
+
+    <div class="container">
+        <h1>Feliz Dia dos Namorados!</h1>
+        <p>Que o amor floresça todos os dias e preencha sua vida de alegria e carinho.</p>
+    </div>
+
+    <div class="hearts"></div>
+
+    <script>
+        // Alternância de fotos
+        const photos = [
+            "https://via.placeholder.com/600x400/ff7eb3",
+            "https://via.placeholder.com/600x400/ffc3a0",
+            "https://via.placeholder.com/600x400/ffd1dc"
+        ];
+        const photoElement = document.getElementById('photo');
+        let photoIndex = 0;
+
+        setInterval(() => {
+            photoIndex = (photoIndex + 1) % photos.length;
+            photoElement.src = photos[photoIndex];
+        }, 3000);
+
+        // Corações flutuantes e mensagens amorosas
+        const heartContainer = document.querySelector('.hearts');
+        const messages = [
+            "Você é meu tudo!",
+            "Te amo hoje e sempre!",
+            "Você faz meu coração sorrir!",
+            "Cada dia com você é um presente!",
+            "Amor sem fim!",
+            "Meu coração bate por você!",
+            "Você é meu porto seguro!",
+            "Meu amor, minha vida!",
+            "Você ilumina meus dias!",
+            "Tudo é melhor com você!",
+            "Você é meu sonho realizado!",
+            "Te amo mais do que ontem!",
+            "Você é minha razão de ser!",
+            "Com você, sou completo!",
+            "Você é meu verdadeiro amor!"
+        ];
+
+        for (let i = 0; i < 15; i++) { // Exatamente 15 corações
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerText = "❤️"; // Emoji do coração
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+
+            // Adicionar evento de clique
+            heart.addEventListener('click', function () {
+                if (!heart.clicked) {
+                    heart.innerText = messages[i]; // Exibe a mensagem amorosa no coração
+                    heart.style.fontSize = "1rem"; // Ajusta o tamanho da mensagem
+                    heart.clicked = true; // Marca como clicado
+                }
+            });
+
+            // Resetar o coração ao final da animação
+            heart.addEventListener('animationiteration', function () {
+                heart.innerText = "❤️"; // Restaura o emoji
+                heart.style.fontSize = "2rem"; // Restaura o tamanho
+                heart.clicked = false; // Redefine para que possa ser clicado novamente
+            });
+
+            heartContainer.appendChild(heart);
+        }
+    </script>
+</body>
+</html>
