@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interação com Corações</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #333;
+            transition: color 0.3s linear;
+            background-image: linear-gradient(to right, #333, #6c63ff);
+            background-size: 0% 100%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            margin: 0;
+        }
+        .emoji {
+            font-size: 40px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .emoji:hover {
+            transform: scale(1.1);
+            transition: 0.2s;
+        }
+        .container {
+            position: relative;
+            display: inline-block;
+        }
+        img {
+            width: 300px;
+            border-radius: 15px;
+        }
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+        .question {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .button {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #6c63ff;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #5148c7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Pergunta acima da imagem -->
+        <p class="question">Você gostou da surpresa?</p>
+        
+        <!-- Imagem com o texto sobreposto -->
+        <div style="position: relative; display: inline-block;">
+            <h1 id="dynamic-text">MUUUUITOOOOO ❤️❤️❤️</h1>
+            <img src="nois.jpg" alt="Surpresa">
+        </div>
+    </div>
+
+    <!-- Botões de interação -->
+    <div>
+        <span class="emoji" onclick="updatePercentage('increase')">❤️</span>
+        <span class="emoji" onclick="updatePercentage('decrease')">💔</span>
+    </div>
+    
+    <!-- Porcentagem -->
+    <p id="percentage">0%</p>
+
+    <!-- Botão para redirecionar -->
+    <button id="redirect-button" class="button" onclick="location.href = 'animações.html';">Ver mais</button>
+
+    <script>
+        let percentage = 0; // Inicializa com 0%
+
+        function updatePercentage(action) {
+            if (action === 'increase' && percentage < 100) {
+                percentage += 10; // Aumenta em 10%
+            } else if (action === 'decrease' && percentage > 0) {
+                percentage -= 10; // Diminui em 10%
+            }
+
+            // Atualiza a porcentagem exibida
+            document.getElementById("percentage").innerText = percentage + "%";
+
+            // Atualiza o preenchimento do texto dinamicamente
+            const textElement = document.getElementById("dynamic-text");
+            const gradientPercentage = percentage + "%";
+            textElement.style.backgroundSize = gradientPercentage + " 100%";
+
+            // Exibe o botão quando atingir 100%
+            if (percentage === 100) {
+                document.getElementById("redirect-button").style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

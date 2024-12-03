@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionário Interativo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 20vh;
+        }
+        h1 {
+            color: #333;
+        }
+        .button {
+            display: block;
+            width: 200px;
+            margin: 10px auto;
+            padding: 15px;
+            background-color: #6c63ff;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .button:hover {
+            background-color: #5148c7;
+        }
+        .next-button {
+            display: none;
+            margin-top: 20px;
+            background-color: #28a745;
+            color: white;
+        }
+        .next-button:hover {
+            background-color: #1e7e34;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="question">Você está preparado?</h1>
+        <button class="button" onclick="nextQuestion(0)">Sim</button>
+        <button class="button" onclick="nextQuestion(1)">Não</button>
+        <button class="button" onclick="nextQuestion(2)">Com certeza</button>
+        <button id="nextPageButton" class="button next-button" onclick="goToNextPage()">Clique aqui para continuar</button>
+    </div>
+
+    <script>
+        // Array de perguntas
+        const questions = [
+            "Você está preparado?",
+            "Qual sua cor favorita?",
+            "Você gosta de programação?",
+            "Está animado para o futuro?"
+        ];
+
+        let currentQuestion = 0;
+
+        // Função para mostrar a próxima pergunta
+        function nextQuestion(option) {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                document.getElementById("question").innerText = questions[currentQuestion];
+            } else {
+                document.getElementById("question").innerText = "Fim do questionário! Obrigado por participar.";
+                document.querySelectorAll(".button").forEach(button => button.style.display = "none");
+                document.getElementById("nextPageButton").style.display = "block";
+            }
+        }
+
+        // Função para redirecionar para a próxima página
+        function goToNextPage() {
+            location.href = 'pergunta 3.html';
+        }
+    </script>
+</body>
+</html>
